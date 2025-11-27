@@ -5,19 +5,20 @@ import vine from '@vinejs/vine'
 export const createLivroValidator = vine.compile(
   vine.object({
     titulo: vine.string().trim().minLength(6),
-    autor:vine.string().trim().minLength(6),
-    genero:vine.string().trim().minLength(6),
-    dataPublicacao:vine.date()}
-))
+    autor: vine.string().trim().minLength(6),
+    genero: vine.string().trim().minLength(6),
+    datapublicacao: vine.date(),
+  })
+)
 
 /**
  * Validates the livro's update action
  */
 export const updateLivroValidator = vine.compile(
- vine.object({
+  vine.object({
     titulo: vine.string().trim().minLength(6),
     autor: vine.string().trim().minLength(6),
     genero: vine.string().trim().minLength(6),
-    datapublicacao: vine.date()
+    datapublicacao: vine.date(),
   })
 )
