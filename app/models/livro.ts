@@ -14,8 +14,8 @@ export default class Livro extends BaseModel {
   @column()
   declare genero: string
 
-  @column.date()
-  declare datapublicacao: DateTime
+  @column()
+  declare datapublicacao: Date
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

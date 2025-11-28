@@ -30,7 +30,7 @@ export default class UsuariosController {
    * Show individual record
    */
   async show({ params }: HttpContext) {
-    const usuario = await Usuario.find(params.id)
+    const usuario = await Usuario.findOrFail(params.id)
     return usuario
   }
 
@@ -43,10 +43,7 @@ export default class UsuariosController {
    * Handle form submission for the edit action
    */
   async update({ params, request }: HttpContext) {
-    const usuarios = await Usuario.find(params.id)
-    if (!usuarios) {
-      return { error: 'Usuário não encontrado' }
-    }
+    const usuarios = await Usuario.findOrFail(params.id)
     const data = await request.validateUsing(updateUsuarioValidator)
     usuarios.merge(data)
     await usuarios.save()
@@ -57,11 +54,7 @@ export default class UsuariosController {
    * Delete record
    */
   async destroy({ params }: HttpContext) {
-    const usuarios = await Usuario.find(params.id)
-    if (!usuarios) {
-      return { error: 'Usuário não encontrado' }
-    }
+    const usuarios = await Usuario.findOrFail(params.id)
     await usuarios.delete()
-    return { message: 'Usuario deletado com sucesso' }
   }
 }
